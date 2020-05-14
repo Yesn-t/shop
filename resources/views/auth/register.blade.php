@@ -8,8 +8,9 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+                    {{-- <form method="POST" action="{{ route('register') }}"> --}}
+                    {!! Form::open(['route' => 'register']) !!}
+                        {{-- @csrf --}}
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -40,10 +41,10 @@
                         </div>
 
                         <div class="form-group row">
-                            {!! Form::label('country', '{{ __('Country') }}' ['class'=>"col-md-4 col-form-label text-md-right"]) !!}
+                            {!! Form::label('country', 'Country', ['class'=>"col-md-4 col-form-label text-md-right"]) !!}
 
                             <div class="col-md-6">
-                                {!! Form::text('country', {{ old('country') }}, ['class'=>"form-control @error('country') is-invalid @enderror", 'placeholder'=>'Tarea 1']) !!}
+                                {!! Form::text('country', null, ['class'=>"form-control"]) !!}
                                 
                                 @error('country')
                                     <span class="invalid-feedback" role="alert">
@@ -54,10 +55,10 @@
                         </div>
 
                         <div class="form-group row">
-                            {!! Form::label('state', '{{ __('State') }}' ['class'=>"col-md-4 col-form-label text-md-right", 'placeholder'=>'Tarea 1']) !!}
+                            {!! Form::label('state', 'State', ['class'=>"col-md-4 col-form-label text-md-right"]) !!}
 
                             <div class="col-md-6">
-                                {!! Form::text('state', {{ old('state') }}, ['class'=>"form-control @error('state') is-invalid @enderror", 'placeholder'=>'Tarea 1']) !!}
+                                {!! Form::text('state', null, ['class'=>"form-control"]) !!}
                                 
                                 @error('state')
                                     <span class="invalid-feedback" role="alert">
@@ -68,10 +69,10 @@
                         </div>
 
                         <div class="form-group row">
-                            {!! Form::label('mobile', '{{ __('mobile') }}' ['class'=>"col-md-4 col-form-label text-md-right", 'placeholder'=>'Tarea 1']) !!}
+                            {!! Form::label('mobile', 'Mobile',  ['class'=>"col-md-4 col-form-label text-md-right"]) !!}
 
                             <div class="col-md-6">
-                                {!! Form::text('mobile', {{ old('mobile') }}, ['class'=>"form-control @error('mobile') is-invalid @enderror", 'placeholder'=>'Tarea 1']) !!}
+                                {!! Form::text('mobile', null, ['class'=>"form-control", 'required']) !!}
                                 
                                 @error('mobile')
                                     <span class="invalid-feedback" role="alert">
@@ -110,7 +111,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
