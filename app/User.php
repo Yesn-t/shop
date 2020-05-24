@@ -36,4 +36,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => null,
     ];
+
+    public function order()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

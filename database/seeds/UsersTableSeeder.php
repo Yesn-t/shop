@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
                       'country' => '-',
                       'state' => '-',
                       'mobile' => '0000000000',
-                      'password' => Hash::make('aA123456.')]);
+                      'password' => Hash::make('..J4m0n..')]);
 
         factory(App\User::class, 20)->create();
     }

@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('departament_id')->unsigned();
             $table->unsignedBigInteger('category_id')->unsigned();
+            $table->string('name');
             $table->string('size');
             $table->string('description');
             $table->float('amount')->nullable()->default(99.99);
