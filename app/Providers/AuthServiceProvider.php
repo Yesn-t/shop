@@ -26,5 +26,12 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         //
+        Gate::define('Administrador', function () {
+            if (\Auth::id() == 1){
+                return true;
+            }else{
+                return false;
+            }
+        });
     }
 }

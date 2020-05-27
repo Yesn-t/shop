@@ -5,6 +5,15 @@
                 <i class="ti-menu"></i>
                 <span>All departments</span>
                 <ul class="depart-hover">
+
+                    {{-- @foreach ($departaments as $departament)
+                        <li>
+                            <a href="{{ route('products.show', $departament->id) }}">
+                    {{ $departament->nombre }}
+                    </a>
+                    </li>
+                    @endforeach --}}
+
                     <li class="active"><a href="#">Women’s Clothing</a></li>
                     <li><a href="#">Men’s Clothing</a></li>
                     <li><a href="#">Underwear</a></li>
@@ -16,55 +25,27 @@
                 </ul>
             </div>
         </div>
-        <nav class="nav-menu mobile-menu">
+        <nav class="nav-menu">
             <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
-                <li><a href="./shop.html">Shop</a></li>
-                <li><a href="#">Collection</a>
-                    <ul class="dropdown">
-                        <li><a href="#">Men's</a></li>
-                        <li><a href="#">Women's</a></li>
-                        <li><a href="#">Kid's</a></li>
-                    </ul>
-                </li>
-                <li><a href="./blog.html">Blog</a></li>
-                <li><a href="./contact.html">Contact</a></li>
+                <li><a href="{{ url('/') }}">Home</a></li>
+                <li><a href="#">Collection</a></li>
                 <li><a href="#">Pages</a>
                     <ul class="dropdown">
-                        <li><a href="./blog-details.html">Blog Details</a></li>
-                        <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                        <li><a href="./check-out.html">Checkout</a></li>
-                        <li><a href="./faq.html">Faq</a></li>
-                        <li><a href="./register.html">Register</a></li>
-                        <li><a href="./login.html">Login</a></li>
+                        <li><a href="#">Shopping Cart</a></li>
+                        <li><a href="#">Faq</a></li>
                     </ul>
                 </li>
+                @if (\Gate::allows('Administrador'))
+                    <li> <a href="{{ route('order.index') }}">Orders</a></li>
+                    <li><a href="#">Settings</a>
+                        <ul class="dropdown">
+                            <li><a href="{{ route('departament.index') }}">Departament</a></li>
+                            <li><a href="{{ route('category.index') }}">Category</a></li>
+                            <li><a href="{{ route('product.index') }}">Product</a></li>
+                        </ul>
+                    </li>
+                @endif 
             </ul>
         </nav>
-        <div id="mobile-menu-wrap"><div class="slicknav_menu"><a href="#" aria-haspopup="true" role="button" tabindex="0" class="slicknav_btn slicknav_collapsed" style="outline: none;"><span class="slicknav_menutxt">MENU</span><span class="slicknav_icon"><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span></span></a><nav class="slicknav_nav slicknav_hidden" aria-hidden="true" role="menu" style="display: none;">
-            <ul>
-                <li class="active"><a href="./index.html" role="menuitem">Home</a></li>
-                <li><a href="./shop.html" role="menuitem">Shop</a></li>
-                <li class="slicknav_collapsed slicknav_parent"><a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;"><a href="#">Collection</a>
-                    <span class="slicknav_arrow">►</span></a><ul class="dropdown slicknav_hidden" role="menu" aria-hidden="true" style="display: none;">
-                        <li><a href="#" role="menuitem" tabindex="-1">Men's</a></li>
-                        <li><a href="#" role="menuitem" tabindex="-1">Women's</a></li>
-                        <li><a href="#" role="menuitem" tabindex="-1">Kid's</a></li>
-                    </ul>
-                </li>
-                <li><a href="./blog.html" role="menuitem">Blog</a></li>
-                <li><a href="./contact.html" role="menuitem">Contact</a></li>
-                <li class="slicknav_collapsed slicknav_parent"><a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;"><a href="#">Pages</a>
-                    <span class="slicknav_arrow">►</span></a><ul class="dropdown slicknav_hidden" role="menu" aria-hidden="true" style="display: none;">
-                        <li><a href="./blog-details.html" role="menuitem" tabindex="-1">Blog Details</a></li>
-                        <li><a href="./shopping-cart.html" role="menuitem" tabindex="-1">Shopping Cart</a></li>
-                        <li><a href="./check-out.html" role="menuitem" tabindex="-1">Checkout</a></li>
-                        <li><a href="./faq.html" role="menuitem" tabindex="-1">Faq</a></li>
-                        <li><a href="./register.html" role="menuitem" tabindex="-1">Register</a></li>
-                        <li><a href="./login.html" role="menuitem" tabindex="-1">Login</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav></div></div>
     </div>
 </div>

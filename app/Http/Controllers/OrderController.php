@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\User;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -13,8 +14,17 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {        
+        $orders = Order::all();
+        // $orders = DB::table('orders')->paginate(10);
+
+        $users = User::with(['orders' => function ($query) {
+        }])
+        ->has('orders')
+        ->get()
+        ->pluck('name', 'id');
+
+        return view('orders.orderIndex', compact('users', 'orders'));
     }
 
     /**
@@ -81,5 +91,10 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+    public function getOrders(User $user)
+    {
+        return $user->orders()->get();
     }
 }

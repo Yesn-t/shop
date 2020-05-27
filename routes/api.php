@@ -20,3 +20,5 @@ Route::get('/user', function (Request $request) {
 
 
 Route::get('/persona', 'API\PersonaController@index');
+
+Route::get('/user/{user}/orders', 'OrderController@getOrders');

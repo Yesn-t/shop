@@ -13,7 +13,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'verified'])->only('index');
+        $this->middleware(['auth', 'verified'])->except('home');
+        // $this->middleware(['auth', 'verified'])->except('home');
     }
 
     /**

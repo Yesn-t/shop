@@ -22,3 +22,15 @@ Route::get('/', 'HomeController@home')->name('home');
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('departament', 'DepartamentController');
+
+Route::group(['middleware' => ['auth', 'verified']], function () {  
+    Route::resource('order', 'OrderController');
+    Route::resource('departament', 'DepartamentController');
+    Route::resource('category', 'CategoryController');
+    Route::resource('product', 'ProductController');
+});
+
+
+

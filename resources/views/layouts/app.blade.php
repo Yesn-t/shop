@@ -44,7 +44,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
 
-                    @include('layouts.sidebar.search')
+                    {{-- @include('layouts.sidebar.search') --}}
 
                     <!-- Right Side Of Navbar -->
                     @include('layouts.sidebar.log')
@@ -52,7 +52,7 @@
                 </div>
             </div>
         </nav>
-
+        @include('layouts.navbar')
         <main class="py-4">
             @yield('content')
         </main>
