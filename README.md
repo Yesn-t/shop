@@ -12,6 +12,7 @@
 
  - Instalación normal de proyecto de laravel (*composer update*)
  - Ejecutar *php artisan db:seed*
+ - Se ejecuto *php artisan storage:link*, no se si se ocupe volver a ejecutar
  - Para hacer uso del sistema se necesista acceder con el usuario administrador
 
 ## Usuario Administrador
