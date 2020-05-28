@@ -16,9 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-
-        return view('departaments.departamentIndex', compact('products'));
+        $products = Product::with('departament:id,name', 'category:id,name')->get();
+     
+        return view('products.productIndex', compact('products'));
     }
 
     /**
@@ -28,10 +28,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::all()->pluck('nombre_categoria', 'id');
-        $departaments = Departament::all()->pluck('nombre_equipo','id');
+        $categories = Category::pluck('name', 'id');
+        $departaments = Departament::pluck('name','id');
 
-        return view('products.productForm', 'departaments', 'categories');
+        return view('products.productForm', compact('departaments', 'categories'));
     }
 
     /**
@@ -42,9 +42,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required | max:20',
+            'departament_id' => 'required',
+            'category_id' => 'required',
+            'description' => 'required | max:100',
+            'amount' => 'required',
+        ]);
+
         Product::create($request->all());
 
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('message', 'Product Created');
     }
 
     /**
@@ -66,7 +74,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('products.productForm', compact('product'));
+        $departaments = Departament::pluck('name', 'id');
+        $categories = Category::pluck('name', 'id');
+
+        return view('products.productForm', compact('product', 'departaments', 'categories'));
     }
 
     /**
@@ -78,9 +89,17 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        $request->validate([
+            'name' => 'required | max:20',
+            'departament_id' => 'required',
+            'category_id' => 'required',
+            'description' => 'required | max:100',
+            'amount' => 'required',
+        ]);
+
         Product::where('id', $product->id)->update($request->except('_token', '_method'));
        
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('message', 'Category Edited');
     }
 
     /**
@@ -92,6 +111,6 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('message', 'Category Deleted');
     }
 }

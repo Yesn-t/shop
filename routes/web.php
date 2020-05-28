@@ -25,6 +25,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('departament', 'DepartamentController');
 
+Route::get('/collection', 'HomeController@collection')->name('collection');
+
 Route::group(['middleware' => ['auth', 'verified']], function () {  
     Route::resource('order', 'OrderController');
     Route::resource('departament', 'DepartamentController');
@@ -33,11 +35,12 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     //Rutas para listado y carga de Files
     Route::get('file', function() {
-        $files = App\File::all();
+        $files = App\File::with('product:id,name')->get();
         return view('files.fileIndex', compact('files'));
     });
     Route::get('file/form', function() {
-        return view('files.fileForm');
+        $products = App\Product::pluck('name','id');
+        return view('files.fileForm', compact('products'));
     });
 
     Route::post('file/charge', 'FileController@upload')->name('file.upload');

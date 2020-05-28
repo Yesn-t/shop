@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'departament_id','category_id','amount','description','size'];
 
     public function departament()
     {
@@ -21,5 +21,10 @@ class Product extends Model
     public function orders()
     {
         return $this->belongsToMany(Order::class);
+    }
+
+    public function files()
+    {
+        return $this->hasMany(File::class);
     }
 }

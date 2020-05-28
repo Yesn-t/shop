@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\File;
+use App\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,8 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'verified'])->except('home');
-        // $this->middleware(['auth', 'verified'])->except('home');
+        $this->middleware(['auth', 'verified'])->except('home', 'collection');
     }
 
     /**
@@ -26,6 +27,21 @@ class HomeController extends Controller
     public function home()
     {
         return view('home');
+    }
+
+    public function collection()
+    {
+        $products = Product::with(['files' => function ($query) {
+        }])
+        ->has('files')
+        ->with('category')
+        ->get();
+
+        // $products = Product::with('files:id,hash')->get();
+
+        // dd($products);
+
+        return view('collection', compact('products'));
     }
 
     public function index()

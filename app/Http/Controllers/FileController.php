@@ -85,15 +85,19 @@ class FileController extends Controller
 
     public function upload(Request $request)
     {
+
+        // dd($request);
+
         if ($request->my_file->isValid()) { //Valida carga
             
             //Guarda en storage/app/archivos_cargados
-            $hash = $request->my_file->store('products');
+            $hash = $request->my_file->store('products', 'public');
             
             // dd($request);
 
             //Crea registro en tabla archivos
             File::create([
+                'product_id' => $request->product_id,
                 'name' => $request->my_file->getClientOriginalName(),
                 'hash' => $hash,
                 'mime' => $request->my_file->getClientMimeType(),
@@ -101,13 +105,13 @@ class FileController extends Controller
             ]);
         }
 
-        return redirect()->back();
+        return redirect('/file')->with('message', 'File Saved');
     }
 
     public function download(File $file)
     {
         //Obtiene ruta del archivo
-        $pathFile = storage_path('app/' . $file->hash);
+        $pathFile = storage_path('app/public/' . $file->hash);
         
         //La respuesta contiene el archivo con el tipo de documento
         return response()->download($pathFile, $file->name, ['Content-Type' => $file->mime]);
@@ -115,14 +119,13 @@ class FileController extends Controller
 
     public function delete(File $file)
     {
-        $pathFile = storage_path($file->hash);
-
         //Verifica la existencia del archivo
-        if (\Storage::exists($file->hash)) {
-            \Storage::delete($file->hash); //Elimina archivo
+        if (\Storage::exists('public/' . $file->hash)) {
+            \Storage::delete('public/' . $file->hash); //Elimina archivo
+            
             $file->delete(); //Elimina registro en tabla
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'File Deleted');
     }
 }

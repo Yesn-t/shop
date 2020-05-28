@@ -7,10 +7,7 @@
                         Copyright &copy;<script>
                             document.write(new Date().getFullYear());
                         </script> All rights reserved
-                    </div>
-                    <div class="payment-pic">
-                        <img src="img/payment-method.png" alt="">
-                    </div>
+                    </div>  
                 </div>
             </div>
         </div>

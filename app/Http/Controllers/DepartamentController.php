@@ -39,7 +39,7 @@ class DepartamentController extends Controller
     {
         Departament::create($request->all());
 
-        return redirect()->route('departament.index');
+        return redirect()->route('departament.index')->with('message', 'Departament Created');
     }
 
     /**
@@ -75,7 +75,7 @@ class DepartamentController extends Controller
     {
         Departament::where('id', $departament->id)->update($request->except('_token', '_method'));
        
-        return redirect()->route('departament.index');
+        return redirect()->route('departament.index')->with('message', 'Departament Edited');
     }
 
     /**
@@ -87,6 +87,6 @@ class DepartamentController extends Controller
     public function destroy(Departament $departament)
     {
         $departament->delete();
-        return redirect()->route('departament.index');
+        return redirect()->route('departament.index')->with('message', 'Departament Deleted');
     }
 }
