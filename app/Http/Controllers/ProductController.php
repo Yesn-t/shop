@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Departament;
+use App\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,7 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+
+        return view('departaments.departamentIndex', compact('products'));
     }
 
     /**
@@ -24,7 +28,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all()->pluck('nombre_categoria', 'id');
+        $departaments = Departament::all()->pluck('nombre_equipo','id');
+
+        return view('products.productForm', 'departaments', 'categories');
     }
 
     /**
@@ -35,7 +42,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Product::create($request->all());
+
+        return redirect()->route('product.index');
     }
 
     /**
@@ -46,7 +55,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        // Define
     }
 
     /**
@@ -57,7 +66,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('products.productForm', compact('product'));
     }
 
     /**
@@ -69,7 +78,9 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        Product::where('id', $product->id)->update($request->except('_token', '_method'));
+       
+        return redirect()->route('product.index');
     }
 
     /**
@@ -80,6 +91,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('product.index');
     }
 }

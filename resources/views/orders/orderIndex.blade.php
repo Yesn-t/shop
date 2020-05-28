@@ -55,7 +55,7 @@
                 </tr>
                 @endforeach
             </tbody>
-          </table>
+        </table>
           {{-- <p id='links'>
             {{ $orders->links() }}
           </p> --}}

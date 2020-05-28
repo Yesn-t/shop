@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Departament extends Model
 {
-    public function product()
+    protected $fillable = ['name'];
+
+    public function products()
     {
         return $this->hasMany(Product::class);
     }

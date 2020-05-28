@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    protected $fillable = ['name'];
+
     public function departament()
     {
         return $this->belongsTo(Departament::class);

@@ -30,6 +30,21 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('departament', 'DepartamentController');
     Route::resource('category', 'CategoryController');
     Route::resource('product', 'ProductController');
+
+    //Rutas para listado y carga de Files
+    Route::get('file', function() {
+        $files = App\File::all();
+        return view('files.fileIndex', compact('files'));
+    });
+    Route::get('file/form', function() {
+        return view('files.fileForm');
+    });
+
+    Route::post('file/charge', 'FileController@upload')->name('file.upload');
+
+    Route::get('file/{file}/charge', 'FileController@download')->name('file.download');
+
+    Route::post('file/{file}/delete', 'FileController@delete')->name('file.delete');
 });
 
 

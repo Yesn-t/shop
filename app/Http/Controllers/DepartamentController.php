@@ -14,7 +14,9 @@ class DepartamentController extends Controller
      */
     public function index()
     {
-        //
+        $departaments = Departament::all();
+
+        return view('departaments.departamentIndex', compact('departaments'));
     }
 
     /**
@@ -24,7 +26,7 @@ class DepartamentController extends Controller
      */
     public function create()
     {
-        //
+        return view('departaments.departamentForm');
     }
 
     /**
@@ -35,7 +37,9 @@ class DepartamentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Departament::create($request->all());
+
+        return redirect()->route('departament.index');
     }
 
     /**
@@ -46,7 +50,7 @@ class DepartamentController extends Controller
      */
     public function show(Departament $departament)
     {
-        //
+        // Not Working
     }
 
     /**
@@ -57,7 +61,7 @@ class DepartamentController extends Controller
      */
     public function edit(Departament $departament)
     {
-        //
+        return view('departaments.departamentForm', compact('departament'));
     }
 
     /**
@@ -69,7 +73,9 @@ class DepartamentController extends Controller
      */
     public function update(Request $request, Departament $departament)
     {
-        //
+        Departament::where('id', $departament->id)->update($request->except('_token', '_method'));
+       
+        return redirect()->route('departament.index');
     }
 
     /**
@@ -80,6 +86,7 @@ class DepartamentController extends Controller
      */
     public function destroy(Departament $departament)
     {
-        //
+        $departament->delete();
+        return redirect()->route('departament.index');
     }
 }

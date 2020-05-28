@@ -3,7 +3,7 @@
 ## Instalacion 
 
  - Instalacion normal de proyecto de laravel (*composer update*)
- - Ejecutar *sphp artisan db:seed*
+ - Ejecutar *php artisan db:seed*
 
 ## Usuario Administrador
 

@@ -42,6 +42,7 @@
                             <li><a href="{{ route('departament.index') }}">Departament</a></li>
                             <li><a href="{{ route('category.index') }}">Category</a></li>
                             <li><a href="{{ route('product.index') }}">Product</a></li>
+                            <li><a href="{{ url('/file') }}">File</a></li>
                         </ul>
                     </li>
                 @endif 
