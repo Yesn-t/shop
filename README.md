@@ -2,7 +2,7 @@
 
 ## Objetivo 
 
- Realizar la parte administrativa de una tienda en linea, la cual es compuesta por el CRUD de los elementos que la componen.
+ Realizar la parte administrativa de una tienda en linea.
 
 ## Integrantes 
 
