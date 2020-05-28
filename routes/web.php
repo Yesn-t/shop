@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeMail;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@home')->name('home');
 
-// Route::get('/', 'HomeController@home', function () {
-//     return view('home');
-// });
+Route::get('/email', function () {
+    Mail::to('admin@admin.com')->send(new WelcomeMail());
+    return new WelcomeMail();
+})->middleware('auth');
 
 Auth::routes(['verify' => true]);
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\User;
+use App\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -56,7 +57,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('orders.orderShow',compact('order'));
     }
 
     /**

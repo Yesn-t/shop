@@ -19,7 +19,7 @@
                             @break
                         @endforeach
                         <ul>
-                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                            <li class="w-icon active"><a href="#"><i class="fa fa-shopping-bag"></i></a></li>
                         </ul>
                     </div>
                     <div class="pi-text">

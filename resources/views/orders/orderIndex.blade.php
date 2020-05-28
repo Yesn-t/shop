@@ -25,6 +25,7 @@
                 <th scope="col">Priority</th>
                 <th scope="col">Products</th>
                 <th scope="col">Amount</th>
+                <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody id="orders">
@@ -52,6 +53,11 @@
                     </td> 
                     <td>{{ $order->total_products }}</td>
                     <td> ${{ $order->amount }}</td> 
+                    <td> 
+                        <a href="{{ route("order.show", $order->id) }}">
+                            <button type="button" class="btn btn-primary">Detail Order</button>
+                        </a>
+                    </td> 
                 </tr>
                 @endforeach
             </tbody>
